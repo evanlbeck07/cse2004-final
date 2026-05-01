@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Higher or Lower: Sports Edition</title>
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Home Page including the form for game settings -->
+    <div id="home-page">
+        <h1>Higher or Lower: Sports Edition</h1>
+        <form id="options-form">
+            <label for="sport">Choose a sport:</label>
+            <select id="sport" name="sport">
+                <option value="nba">NBA</option>
+                <option value="nfl">NFL</option>
+                <option value="mlb">MLB</option>
+                <option value="nhl">NHL</option>
+            </select>
+            <br><br>
+            <label for="stat">Choose a stat:</label>
+            <select id="stat" name="stat">
+                <!-- Stat options will change based on the sport selected -->
+            </select>
+            <br><br>
+            <label>Player Pool:</label>
+            <input type="radio" id="current" name="player-pool" value="current" checked>
+            <label for="current">Current Players</label>
+            <input type="radio" id="all-time" name="player-pool" value="all-time">
+            <label for="all-time">All-Time</label>
+            <br><br>
+            <button type="submit">Start Game</button>
+        </form>
+    </div>
+
+    <!-- Game Page -->
+    <div id="game-page" style="display:none;">
+        <div class="game-bg-image" id="player-bg"></div>
+        <div class="game-content">
+            <h2 id="stat-title">Stat: </h2>
+            <div class="player-container">
+                <div class="player" id="player1">
+                    <div class="player-name" id="player1-name"></div>
+                    <div class="player-stat" id="player1-stat"></div>
+                </div>
+                <div class="vs">VS</div>
+                <div class="player" id="player2">
+                    <div class="player-name" id="player2-name"></div>
+                    <button id="higher-btn">Higher</button>
+                    <button id="lower-btn">Lower</button>
+                </div>
+            </div>
+            <div id="result-message"></div>
+            <button id="play-again-btn" style="display:none;">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
