@@ -102,7 +102,8 @@ async function fetchTeamsAndRosters() {
     for (const t of cachedTeams) {
         const teamId = t.team.id;
         const rosterData = await secureFetch(`https://site.api.espn.com/apis/site/v2/sports/${sport}/${league}/teams/${teamId}/roster`);
-        cachedRosters[teamId] = rosterData.athletes.map(a => a.athlete);
+        // Ensure we only cache valid athlete objects and handle cases where a roster might be empty or malformed.
+        cachedRosters[teamId] = rosterData.athletes?.map(a => a.athlete).filter(Boolean) || [];
     }
 }
 
@@ -118,7 +119,8 @@ async function fetchRandomPlayer() {
                 const roster = cachedRosters[randomTeam.id];
                 if (!roster || roster.length === 0) continue;
 
-                const filtered = roster.filter(p => p.status?.type === 'active');
+                // Add optional chaining to `p` to prevent errors if the roster array contains undefined elements.
+                const filtered = roster.filter(p => p?.status?.type === 'active');
                 if (filtered.length === 0) continue;
 
                 athlete = filtered[Math.floor(Math.random() * filtered.length)];
