@@ -1,0 +1,442 @@
+/* VARIABLES */
+:root {
+    --color-background: #121212;
+    --color-text: #FFFFFF;
+    --color-primary: #fff989;
+    --color-green: #59ac51;
+    --color-red: #c75555;
+    --color-dark-overlay: rgba(0, 0, 0, 0.6);
+}
+
+html, body {
+    height: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    overflow: hidden;
+}
+
+/* HOME PAGE */
+#home-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 100%;
+    padding: 20px;
+    position: relative;
+}
+
+.sport-backgrounds {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: hidden;
+}
+
+.sport-bg-quadrant {
+    width: 50%;
+    height: 50%;
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.5);
+    transition: filter 0.5s ease-in-out;
+    position: relative;
+}
+
+.sport-bg-quadrant::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0, 0, 0, 0.3);
+}
+
+/* Background light up effect */
+.sport-bg-quadrant.highlighted {
+    filter: brightness(1);
+}
+
+/* Specific background images for each quadrant */
+#mlb-bg { background-image: url('https://s7d1.scene7.com/is/image/CENODS/09526-scitech2-baseball2?%24responsive%24=&wid=360&fit=constrain&qlt=95%2C0&resMode=sharp2&fmt=webp'); }
+#nba-bg { background-image: url('https://ssww-blog.s3.amazonaws.com/blog/wp-content/uploads/basketball-buying-guide.jpg'); }
+#nfl-bg { background-image: url('https://npr.brightspotcdn.com/dims4/default/a9247f1/2147483647/strip/true/crop/5987x3981+0+0/resize/1760x1170!/format/webp/quality/90/?url=http%3A%2F%2Fnpr-brightspot.s3.amazonaws.com%2F6e%2F1a%2Fad489ab04171a3f71807e59124fe%2Fpexels-jean-daniel-2570139.jpg'); }
+#nhl-bg { background-image: url('https://scontent-ord5-3.xx.fbcdn.net/v/t39.30808-6/651847778_10237899926668943_4603700845736829023_n.jpg?stp=cp6_dst-jpg_s1080x2048_tt6&_nc_cat=106&ccb=1-7&_nc_sid=7b2446&_nc_ohc=iUL96V5kxN8Q7kNvwETd3Cz&_nc_oc=AdqMEah8EdvmfEqjznCwKP_8PSAxj52OhMt-gTOk0Ns3szZypBGIrOD8Zg0svcYEXSo&_nc_zt=23&_nc_ht=scontent-ord5-3.xx&_nc_gid=BlEwIc82QwzcT7f9aXaUbQ&_nc_ss=7b2a8&oh=00_Af5Zn2FzTCppRVjz564vpK2xEpnDJemZbWwGkDJ30Ul5QA&oe=69FE21B6'); }
+
+.home-content-wrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+}
+
+#home-page h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+}
+
+#options-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    font-size: 1.1rem;
+}
+
+#options-form label {
+    font-weight: 600;
+}
+
+#options-form select, #options-form input {
+    margin-left: 8px;
+}
+
+/* BUTTONS */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    border: 2px solid var(--color-text);
+    border-radius: 50px;
+    background-color: transparent;
+    color: var(--color-text);
+    font-weight: 700;
+    font-size: 1rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+    position: relative;
+}
+
+.btn:hover {
+    background-color: var(--color-text);
+    color: var(--color-background);
+    transform: translateY(-2px);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.btn:disabled {
+    background-color: #555;
+    border-color: #555;
+    color: #999;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+.btn--start {
+    background-color: var(--color-green);
+    border-color: var(--color-green);
+}
+.btn--start:hover {
+    background-color: #6bc964;
+    border-color: #6bc964;
+    color: var(--color-text);
+}
+
+.btn--higher, .btn--lower {
+    width: 150px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+/* Arrows for higher/lower buttons */
+.btn--higher::before, .btn--lower::before {
+    content: '';
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    border: solid var(--color-text);
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 4px;
+    transition: all 0.2s ease-in-out;
+}
+
+.btn:hover::before {
+    border-color: var(--color-background);
+}
+
+.btn--higher::before {
+    transform: translateY(-60%) rotate(-135deg);
+}
+
+.btn--lower::before {
+    transform: translateY(-40%) rotate(45deg);
+}
+
+/* GAME PAGE */
+#game-page {
+    height: 100%;
+    width: 100%;
+    display: none;
+}
+
+.score-container {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    z-index: 10;
+    font-size: 1.5rem;
+    font-weight: 700;
+    display: flex;
+    justify-content: space-between;
+}
+
+#stat-title {
+    position: absolute;
+    top: 60px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.player-container {
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.player-card {
+    width: 50%;
+    height: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    padding: 20px;
+}
+
+/* This is the dark overlay on the background image */
+.player-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: var(--color-dark-overlay);
+    z-index: 1;
+}
+
+.player-bg {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-size: cover;
+    background-position: center;
+    filter: blur(5px);
+    transform: scale(1.1);
+    z-index: 0;
+}
+
+.player-headshot, .player-info, .player-stat, #guess-controls {
+    position: relative;
+    z-index: 2;
+}
+
+.player-headshot {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid var(--color-text);
+    object-fit: cover;
+    margin-bottom: 1rem;
+}
+
+.player-name {
+    font-size: 1.8rem;
+    font-weight: 700;
+}
+
+.player-pos {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+.player-stat {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-primary);
+    margin-top: 1rem;
+}
+
+#guess-controls {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* VERSUS INDICATOR */
+.versus-block {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 90px;
+    height: 90px;
+    background-color: var(--color-text);
+    color: var(--color-background);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.8rem;
+    font-weight: 700;
+    z-index: 20;
+    transform: translate(-50%, -50%) scale(1);
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+/* Animation for correct/incorrect guess */
+.versus-block.correct::before, .versus-block.incorrect::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation: slide-up 0.4s ease-out forwards;
+}
+
+.versus-block.correct::before { background-color: var(--color-green); }
+.versus-block.incorrect::before { background-color: var(--color-red); }
+
+.vs-text {
+    z-index: 1;
+    opacity: 1;
+    transition: opacity 0.2s ease;
+}
+
+/* When correct or incorrect, fade out the "VS" text as the icon appears */
+.versus-block.correct .vs-text,
+.versus-block.incorrect .vs-text {
+    transition-delay: 0.4s;
+    opacity: 0;
+}
+
+.vs-icon {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+.vs-icon svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 50%;
+    height: 50%;
+    color: var(--color-text);
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0);
+    stroke-width: 5;
+}
+
+/* GAME OVER OVERLAY */
+#game-over-overlay {
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: rgba(0,0,0,0.8);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    animation: fadeIn 0.3s;
+}
+
+.overlay-content {
+    background-color: #2a2a2a;
+    padding: 40px;
+    border-radius: 10px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.overlay-content h2 {
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.overlay-content p {
+    font-size: 1.2rem;
+}
+
+.overlay-content span {
+    font-weight: 700;
+    color: var(--color-primary);
+}
+
+.overlay-buttons {
+    margin-top: 20px;
+    display: flex;
+    gap: 15px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slide-up {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+}
+
+/* Score bounce animation */
+.score-animation {
+    animation: scale-bounce 0.5s ease-in-out;
+}
+
+@keyframes scale-bounce {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.5); }
+    100% { transform: scale(1); }
+}
+
+/* Animate the correct icon in */
+.versus-block.correct .icon-correct {
+    animation: pop-in 0.4s cubic-bezier(.24,-.17,.45,1.99) 0.4s forwards;
+}
+
+/* Animate the incorrect icon in */
+.versus-block.incorrect .icon-incorrect {
+    animation: pop-in 0.4s cubic-bezier(.24,-.17,.45,1.99) 0.4s forwards;
+}
+
+@keyframes pop-in {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0);
+    }
+    80% {
+        transform: translate(-50%, -50%) scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
